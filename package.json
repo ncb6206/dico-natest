@@ -58,8 +58,10 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "prettier --write",
       "eslint --fix"
+    ],
+    "!app/**/*.{ts,tsx}": [
+      "prettier --write"
     ]
   }
 }
