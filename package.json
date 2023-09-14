@@ -67,8 +67,9 @@
     "*.{ts,tsx}": [
       "eslint --fix"
     ],
-    "!app/**/*.{ts,tsx}": [
+    "*": [
       "prettier --write"
-    ]
+    ],
+    "app/**/*.{ts,tsx}": []
   }
 }
