@@ -70,6 +70,6 @@
     "*": [
       "prettier --write"
     ],
-    "app/**/*.{ts,tsx}": []
+    "app/**/*.{ts,tsx}, prisma/**/*.prisma": []
   }
 }
