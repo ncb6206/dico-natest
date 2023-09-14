@@ -1,6 +1,6 @@
 'use client';
 
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import qs from 'query-string';
 import * as z from 'zod';
 import axios from 'axios';
@@ -48,36 +48,28 @@ const formSchema = z.object({
 });
 
 export const CreateChannelModal = () => {
-  const { isOpen, onClose, type } = useModal();
+  const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
   const params = useParams();
 
   const isModalOpen = isOpen && type === 'createChannel';
-  // const { channelType } = data;
-
-  // const form = useForm({
-  //   resolver: zodResolver(formSchema),
-  //   defaultValues: {
-  //     name: '',
-  //     type: channelType || ChannelType.TEXT,
-  //   },
-  // });
+  const { channelType } = data;
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      type: ChannelType.TEXT,
+      type: channelType || ChannelType.TEXT,
     },
   });
 
-  // useEffect(() => {
-  //   if (channelType) {
-  //     form.setValue('type', channelType);
-  //   } else {
-  //     form.setValue('type', ChannelType.TEXT);
-  //   }
-  // }, [channelType, form]);
+  useEffect(() => {
+    if (channelType) {
+      form.setValue('type', channelType);
+    } else {
+      form.setValue('type', ChannelType.TEXT);
+    }
+  }, [channelType, form]);
 
   const isLoading = form.formState.isSubmitting;
 
